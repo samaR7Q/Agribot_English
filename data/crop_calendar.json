@@ -1,0 +1,117 @@
+{
+ "crop_schedule": {
+  "Wheat": {
+   "Preferred Sowing Time": "01 November to 30 November (Best: 15th November)",
+   "Harvesting Time": "10 April to 10 May"
+  },
+  "Maize": {
+   "Preferred Sowing Time": [
+    "January to 28 February",
+    "1 July to 15 August"
+   ],
+   "Harvesting Time": [
+    "15 May to 15 June",
+    "15 October to 15 November"
+   ]
+  },
+  "Sugarcane": {
+   "Preferred Sowing Time": [
+    "15 February to 31 March",
+    "15 September to 15 October"
+   ],
+   "Harvesting Time": "December to February"
+  },
+  "Cotton": {
+   "Preferred Sowing Time": "15 February to 31 March",
+   "Harvesting Time": "September to October"
+  },
+  "Rice": {
+   "Preferred Sowing Time": "20 May to 1 July",
+   "Harvesting Time": "Mid October to 20 November"
+  },
+  "Sesame": {
+   "Preferred Sowing Time": "1 June to 15 July",
+   "Harvesting Time": "100 to 120 Days"
+  },
+  "Canola": {
+   "Preferred Sowing Time": "1 October to Mid November",
+   "Harvesting Time": "1 March to Mid April"
+  },
+  "Berseem": {
+   "Preferred Sowing Time": "October to November",
+   "Harvesting Time": {
+    "First Cut": "December",
+    "Last Cut": "April"
+   }
+  },
+  "Oat": {
+   "Preferred Sowing Time": "October to November",
+   "Harvesting Time": "August to March"
+  }
+ },
+ "sowing_calendar": {
+  "January": [
+   "Maize",
+   "Sunflower",
+   "Radish"
+  ],
+  "February": [
+   "Maize",
+   "Sugarcane",
+   "Cotton",
+   "Sunflower"
+  ],
+  "March": [
+   "Sugarcane",
+   "Cotton"
+  ],
+  "April": [
+   "Guara"
+  ],
+  "May": [
+   "Rice",
+   "Guara"
+  ],
+  "June": [
+   "Rice",
+   "Sesame",
+   "Guara",
+   "Maize"
+  ],
+  "July": [
+   "Rice",
+   "Sesame",
+   "Sunflower",
+   "Guara",
+   "Maize"
+  ],
+  "August": [
+   "Sunflower"
+  ],
+  "September": [
+   "Sugarcane",
+   "Radish"
+  ],
+  "October": [
+   "Sugarcane",
+   "Canola",
+   "Berseem",
+   "Radish",
+   "Lucern",
+   "Rye grass"
+  ],
+  "November": [
+   "Wheat",
+   "Canola",
+   "Berseem",
+   "Radish",
+   "Lucern",
+   "Oat",
+   "Rye grass"
+  ],
+  "December": [
+   "Wheat",
+   "Radish"
+  ]
+ }
+}

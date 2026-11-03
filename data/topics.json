@@ -1,0 +1,313 @@
+{
+ "topics": [
+  {
+   "key": "wheat",
+   "name": "Wheat",
+   "group": "crop",
+   "kb": "WHEAT",
+   "calendar": "Wheat",
+   "mandi": "wheat",
+   "aliases": [
+    "gandum",
+    "kanak"
+   ]
+  },
+  {
+   "key": "maize",
+   "name": "Maize",
+   "group": "crop",
+   "kb": "MAIZE",
+   "calendar": "Maize",
+   "mandi": "maize",
+   "aliases": [
+    "corn",
+    "makai",
+    "makki",
+    "challi"
+   ]
+  },
+  {
+   "key": "rice",
+   "name": "Rice",
+   "group": "crop",
+   "kb": "RICE",
+   "calendar": "Rice",
+   "mandi": "rice_basmati",
+   "aliases": [
+    "paddy",
+    "chawal",
+    "dhaan",
+    "munji",
+    "basmati"
+   ]
+  },
+  {
+   "key": "cotton",
+   "name": "Cotton",
+   "group": "crop",
+   "kb": "COTTON",
+   "calendar": "Cotton",
+   "mandi": "cotton",
+   "aliases": [
+    "kapas",
+    "narma",
+    "phutti"
+   ]
+  },
+  {
+   "key": "sugarcane",
+   "name": "Sugarcane",
+   "group": "crop",
+   "kb": "SUGARCANE",
+   "calendar": "Sugarcane",
+   "mandi": "sugarcane",
+   "aliases": [
+    "ganna",
+    "kamad",
+    "cane"
+   ]
+  },
+  {
+   "key": "sesame",
+   "name": "Sesame",
+   "group": "crop",
+   "kb": "SESAME",
+   "calendar": "Sesame",
+   "mandi": "sesame",
+   "aliases": [
+    "til"
+   ]
+  },
+  {
+   "key": "canola",
+   "name": "Canola",
+   "group": "crop",
+   "kb": "CANOLA",
+   "calendar": "Canola",
+   "mandi": "canola",
+   "aliases": []
+  },
+  {
+   "key": "mustard",
+   "name": "Mustard",
+   "group": "crop",
+   "kb": "MUSTARD",
+   "calendar": null,
+   "mandi": "mustard",
+   "aliases": [
+    "sarson",
+    "sarhon"
+   ]
+  },
+  {
+   "key": "raya",
+   "name": "Raya",
+   "group": "crop",
+   "kb": "RAYA",
+   "calendar": null,
+   "mandi": "raya",
+   "aliases": [
+    "brown mustard"
+   ]
+  },
+  {
+   "key": "toria",
+   "name": "Toria",
+   "group": "crop",
+   "kb": "TORIA",
+   "calendar": null,
+   "mandi": "toria",
+   "aliases": []
+  },
+  {
+   "key": "taramira",
+   "name": "Taramira",
+   "group": "crop",
+   "kb": "TARAMIRA",
+   "calendar": null,
+   "mandi": "taramira",
+   "aliases": [
+    "arugula",
+    "jamba",
+    "tara mira"
+   ]
+  },
+  {
+   "key": "camelina",
+   "name": "Camelina",
+   "group": "crop",
+   "kb": "CAMELINA_SONAI",
+   "calendar": null,
+   "mandi": "camelina",
+   "aliases": [
+    "sonai",
+    "camelina sonai"
+   ]
+  },
+  {
+   "key": "linseed",
+   "name": "Linseed",
+   "group": "crop",
+   "kb": "LINSEED",
+   "calendar": null,
+   "mandi": "linseed",
+   "aliases": [
+    "flax",
+    "alsi"
+   ]
+  },
+  {
+   "key": "sunflower",
+   "name": "Sunflower",
+   "group": "crop",
+   "kb": "SUNFLOWER",
+   "calendar": "Sunflower",
+   "mandi": "sunflower",
+   "aliases": [
+    "suraj mukhi"
+   ]
+  },
+  {
+   "key": "guar",
+   "name": "Guar",
+   "group": "crop",
+   "kb": "GUAR",
+   "calendar": "Guara",
+   "mandi": "guar",
+   "aliases": [
+    "cluster bean",
+    "guara"
+   ]
+  },
+  {
+   "key": "berseem",
+   "name": "Berseem",
+   "group": "crop",
+   "kb": "BERSEEM",
+   "calendar": "Berseem",
+   "mandi": "berseem",
+   "aliases": [
+    "egyptian clover",
+    "barseem"
+   ]
+  },
+  {
+   "key": "lucerne",
+   "name": "Lucerne",
+   "group": "crop",
+   "kb": "LUCERNE",
+   "calendar": "Lucern",
+   "mandi": "lucerne",
+   "aliases": [
+    "alfalfa",
+    "lusan"
+   ]
+  },
+  {
+   "key": "oats",
+   "name": "Oats",
+   "group": "crop",
+   "kb": "OATS",
+   "calendar": "Oat",
+   "mandi": "oats",
+   "aliases": [
+    "oat",
+    "jai",
+    "javi"
+   ]
+  },
+  {
+   "key": "ryegrass",
+   "name": "Ryegrass",
+   "group": "crop",
+   "kb": "RYEGRASS",
+   "calendar": "Rye grass",
+   "mandi": "ryegrass",
+   "aliases": [
+    "rye grass"
+   ]
+  },
+  {
+   "key": "mooli",
+   "name": "Radish (mooli)",
+   "group": "crop",
+   "kb": "MOOLI",
+   "calendar": "Radish",
+   "mandi": "mooli",
+   "aliases": [
+    "mooli",
+    "radish"
+   ]
+  },
+  {
+   "key": "hay",
+   "name": "Hay",
+   "group": "crop",
+   "kb": "HAY",
+   "calendar": null,
+   "mandi": "hay",
+   "aliases": [
+    "dry fodder",
+    "toori",
+    "silage"
+   ]
+  },
+  {
+   "key": "apple",
+   "name": "Apple",
+   "group": "crop",
+   "kb": "APPLE",
+   "calendar": null,
+   "mandi": "apple",
+   "aliases": [
+    "saib",
+    "seb"
+   ]
+  },
+  {
+   "key": "cow",
+   "name": "Cow",
+   "group": "livestock",
+   "kb": "COW",
+   "calendar": null,
+   "mandi": "cow",
+   "aliases": [
+    "cattle",
+    "gaye",
+    "gaan",
+    "dairy cow"
+   ]
+  },
+  {
+   "key": "buffalo",
+   "name": "Buffalo",
+   "group": "livestock",
+   "kb": "BUFFALO",
+   "calendar": null,
+   "mandi": "buffalo",
+   "aliases": [
+    "bhains",
+    "majh",
+    "murrah",
+    "nili ravi"
+   ]
+  }
+ ],
+ "general": [
+  {
+   "key": "climate_change",
+   "name": "Climate change",
+   "kb": "CLIMATECHANGE"
+  },
+  {
+   "key": "irrigation",
+   "name": "Irrigation",
+   "kb": "IRRIGATION"
+  },
+  {
+   "key": "about_bashir",
+   "name": "About Bashir",
+   "kb": "GENERAL"
+  }
+ ]
+}

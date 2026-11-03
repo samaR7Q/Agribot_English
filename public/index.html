@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kisan Dost Bashir</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone">
+    <header class="topbar">
+      <button class="icon-btn back" id="backBtn" aria-label="Back">
+        <svg viewBox="0 0 24 24" width="30" height="30"><path d="M20 12H5m0 0 6.5-6.5M5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <h1 class="title">Kisan Dost Bashir</h1>
+      <img class="logo" src="assets/logo.png" alt="Logo">
+    </header>
+
+    <main class="card">
+      <section class="hero">
+        <button class="history-btn" id="historyBtn">
+          <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          History
+        </button>
+        <div class="avatar" id="avatar">
+          <img src="assets/avatar.jpg" alt="Bashir" id="avatarImg">
+          <video src="assets/avatar_speaking.mp4" id="avatarVideo" muted loop playsinline preload="auto"></video>
+        </div>
+      </section>
+
+      <section class="chat" id="chat" aria-live="polite"></section>
+
+      <footer class="composer">
+        <button class="round-btn plus" id="newChatBtn" aria-label="New chat">
+          <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="status" id="status">Tap the mic to start</div>
+        <button class="round-btn mic" id="micBtn" aria-label="Start recording">
+          <svg class="i-mic" viewBox="0 0 24 24" width="28" height="28"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="i-stop" viewBox="0 0 24 24" width="24" height="24"><rect x="6" y="6" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
+          <span class="spinner"></span>
+        </button>
+      </footer>
+    </main>
+
+    <aside class="history" id="historyPanel" hidden>
+      <div class="history-head">
+        <button class="icon-btn" id="historyClose" aria-label="Close history">
+          <svg viewBox="0 0 24 24" width="26" height="26"><path d="M20 12H5m0 0 6.5-6.5M5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <h2>History</h2>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </aside>
+  </div>
+
+  <template id="speakerIcon">
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

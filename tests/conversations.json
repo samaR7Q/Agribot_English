@@ -1,0 +1,91 @@
+{
+ "small_talk": [
+  "Hello, who are you?",
+  "What can you help me with?",
+  "Thank you"
+ ],
+ "weather_not_covered": [
+  "Will it rain tomorrow?"
+ ],
+ "vegetable_out_of_scope": [
+  "How do I grow tomatoes?"
+ ],
+ "no_crop_named": [
+  "Which fertilizer should I use?",
+  "Wheat"
+ ],
+ "wheat_variety_probe": [
+  "Which wheat variety should I sow?",
+  "I am from Bahawalpur and my land is irrigated"
+ ],
+ "fertilizer_probe": [
+  "How much urea for wheat?",
+  "My soil is medium"
+ ],
+ "topic_switch_yes": [
+  "What are the main diseases of wheat?",
+  "How much water does maize need?",
+  "Yes"
+ ],
+ "topic_switch_no": [
+  "How do I control weeds in cotton?",
+  "Tell me about buffalo breeds",
+  "No"
+ ],
+ "negation": [
+  "Tell me about wheat irrigation",
+  "Not wheat, I mean rice. When do I harvest it?",
+  "Yes"
+ ],
+ "mandi_no_district": [
+  "What is the wheat rate today?",
+  "Multan"
+ ],
+ "mandi_other_city_keeps_topic": [
+  "Tell me about sugarcane sowing",
+  "What is the cotton rate in Hyderabad?",
+  "And what fertilizer does it need?"
+ ],
+ "mandi_unknown_commodity": [
+  "What is the onion rate in Lahore?"
+ ],
+ "what_can_i_sow": [
+  "What can I sow this month?",
+  "And next month?"
+ ],
+ "can_i_sow_today": [
+  "Can I sow cotton today?"
+ ],
+ "harvest_time_no_calendar": [
+  "When is mustard harvested?"
+ ],
+ "livestock_health_probe": [
+  "My cow has a fever, what should I do?",
+  "She is 4 years old and about 400 kg"
+ ],
+ "age_not_duration": [
+  "My buffalo has been pregnant for 8 months, how should I feed her?"
+ ],
+ "climate_change": [
+  "How does climate change affect wheat sowing time?"
+ ],
+ "urdu_words": [
+  "Gandum ka mandi rate kya hai Faisalabad mein?"
+ ],
+ "cotton_whitefly": [
+  "There is whitefly on my cotton, what should I spray?"
+ ],
+ "sunflower_sowing_no_calendar": [
+  "When should I sow sunflower?"
+ ],
+ "buffalo_feed": [
+  "How much green fodder does a buffalo need daily?"
+ ],
+ "radish_varieties": [
+  "Which radish variety should I sow in October?",
+  "Lahore, irrigated"
+ ],
+ "oats_weed_grass_killer": [
+  "Can I spray quizalofop on my oats for grass weeds?"
+ ]
+}

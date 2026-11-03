@@ -1,0 +1,614 @@
+[
+ {
+  "district": "Rawalpindi",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Lahore",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Faisalabad",
+  "province": "Punjab",
+  "aliases": [
+   "Lyallpur"
+  ]
+ },
+ {
+  "district": "Multan",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Gujranwala",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Sialkot",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Bahawalpur",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Sargodha",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Gujrat",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Sheikhupura",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Rahim Yar Khan",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Jhang",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Kasur",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Okara",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Sahiwal",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Mandi Bahauddin",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Narowal",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Hafizabad",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Chakwal",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Jhelum",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Attock",
+  "province": "Punjab",
+  "aliases": [
+   "Campbellpur"
+  ]
+ },
+ {
+  "district": "Mianwali",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Khanewal",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Lodhran",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Pakpattan",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Muzaffargarh",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Layyah",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Bhakkar",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Vehari",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Dera Ghazi Khan",
+  "province": "Punjab",
+  "aliases": [
+   "D.G. Khan",
+   "Dg Khan"
+  ]
+ },
+ {
+  "district": "Toba Tek Singh",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Nankana Sahib",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Chiniot",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Khushab",
+  "province": "Punjab",
+  "aliases": []
+ },
+ {
+  "district": "Islamabad",
+  "province": "Islamabad Capital Territory",
+  "aliases": []
+ },
+ {
+  "district": "Peshawar",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Abbottabad",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Mansehra",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Mardan",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Swat",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Nowshera",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Charsadda",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Kohat",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Bannu",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Dera Ismail Khan",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": [
+   "D.I. Khan",
+   "Di Khan"
+  ]
+ },
+ {
+  "district": "Haripur",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Swabi",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Buner",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Shangla",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Dir",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Lower Dir",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Upper Dir",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Chitral",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Tank",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Lakki Marwat",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Karak",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Hangu",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Kurram",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Orakzai",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Mohmand",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Bajaur",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Khyber",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "South Waziristan",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "North Waziristan",
+  "province": "Khyber Pakhtunkhwa",
+  "aliases": []
+ },
+ {
+  "district": "Karachi",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Hyderabad",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Sukkur",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Larkana",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Nawabshah",
+  "province": "Sindh",
+  "aliases": [
+   "Shaheed Benazirabad"
+  ]
+ },
+ {
+  "district": "Mirpur Khas",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Jacobabad",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Shikarpur",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Kashmore",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Dadu",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Matiari",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Tando Allahyar",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Tando Muhammad Khan",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Badin",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Thatta",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Sajawal",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Khairpur",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Ghotki",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Sanghar",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Umerkot",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Tharparkar",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Qambar Shahdadkot",
+  "province": "Sindh",
+  "aliases": []
+ },
+ {
+  "district": "Quetta",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Khuzdar",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Turbat",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Hub",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Gwadar",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Kharan",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Kalat",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Panjgur",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Chaman",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Zhob",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Loralai",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Sibi",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Mastung",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Nushki",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Washuk",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Dera Bugti",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Kohlu",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Barkhan",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Musakhel",
+  "province": "Balochistan",
+  "aliases": []
+ },
+ {
+  "district": "Muzaffarabad",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Mirpur",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Rawalakot",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Bagh",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Kotli",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Neelum",
+  "province": "Azad Kashmir",
+  "aliases": []
+ },
+ {
+  "district": "Gilgit",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Skardu",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Hunza",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Ghanche",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Astore",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Diamer",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Ghizer",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Nagar",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ },
+ {
+  "district": "Shigar",
+  "province": "Gilgit-Baltistan",
+  "aliases": []
+ }
+]
