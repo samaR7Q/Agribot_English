@@ -1,5 +1,6 @@
-"""Tool handlers. Every rule that must not depend on the model lives here: topic switch,
-missing-info probes, unsupported crops, mandi lookups, sowing windows.
+"""Tool handlers. Every rule that must not depend on the model lives here: current topic,
+unsupported crops, mandi lookups, sowing windows. No probing: a new crop or animal switches the
+topic straight away, and missing farmer details never hold an answer back.
 
 The conversation state is a plain dict kept by the browser and sent with every tool call,
 so the server stays stateless (Vercel functions).
@@ -18,7 +19,6 @@ PK_TZ = ZoneInfo("Asia/Karachi")
 
 EMPTY_STATE = {
     "topic": None,             # current crop/animal key
-    "pending_switch": None,    # topic key waiting for the farmer's yes/no
     "district": None,
     "province": None,
     "farm_type": None,
@@ -26,22 +26,8 @@ EMPTY_STATE = {
     "harvest_resource": None,
     "animal_age": None,
     "animal_weight_kg": None,
-    "probed": [],              # "topic:aspect" already probed once; never probe the same thing twice
 }
 
-PROBE_QUESTIONS = {
-    "district": "Which district are you from?",
-    "farm_type": "Is your land irrigated or rain-fed (barani)?",
-    "soil_fertility": "Is your soil weak, medium, or very fertile?",
-    "harvest_resource": "Will you harvest with labour or with a machine?",
-    "animal_age": "How old is your animal?",
-    "animal_weight_kg": "About how much does your animal weigh, in kilograms?",
-}
-
-# Profile fields an aspect needs before it can be answered well (same rules as the Urdu bot).
-CROP_PROBES = {"varieties": ["district", "farm_type"], "fertilizer": ["soil_fertility"], "harvesting": ["harvest_resource"]}
-FARM_TYPE_EXEMPT = {"rice", "sugarcane"}
-LIVESTOCK_PROBES = {"health": ["animal_age", "animal_weight_kg"]}
 ANIMAL_FIELDS = ("animal_age", "animal_weight_kg")
 
 ANSWER_RULE = (
@@ -50,6 +36,18 @@ ANSWER_RULE = (
     "If there is more useful detail, offer it in one short line. If `info` does not cover the question, "
     "say you don't have that information. Never add doses, varieties, dates or prices that are not in `info`."
 )
+# Details the farmer hasn't given are never asked for; the answer covers the common case instead.
+NO_PROBE_RULE = (
+    " If `info` differs by province, land type (irrigated or barani), soil, harvest method or the animal's "
+    "age or weight, and that detail isn't in `farmer`, give the most common case and name the main "
+    "difference in one short line. Never ask the farmer for these details."
+)
+NO_TOPIC = {
+    "status": "no_topic",
+    "instruction": ("No crop or animal has been named yet. Don't ask a question back. Say in one short sentence "
+                    "that you can answer as soon as they say the crop or animal name with the question, "
+                    "for example 'wheat fertilizer' or 'buffalo feed'."),
+}
 
 
 def today() -> datetime:
@@ -57,7 +55,7 @@ def today() -> datetime:
 
 
 def new_state() -> dict:
-    return {**EMPTY_STATE, "probed": []}
+    return dict(EMPTY_STATE)
 
 
 def _covered_list() -> str:
@@ -84,80 +82,25 @@ def select_topic(args: dict, state: dict) -> dict:
                 f"Say you can help with these crops and animals: {_covered_list()}. Do not answer the question."
             ),
         }
-    current = state.get("topic")
-    if current is None or current == topic:
-        state["topic"] = topic
-        state["pending_switch"] = None
-        return {"status": "ok", "topic": _topic_name(topic),
-                "instruction": "Now call the tool that answers the question (get_topic_info or get_crop_timing)."}
-    state["pending_switch"] = topic
-    return {
-        "status": "confirm_switch",
-        "previous": _topic_name(current),
-        "new": _topic_name(topic),
-        "instruction": (
-            f"Do not answer yet. Say exactly: 'Before I answer, please confirm: so far we were talking about "
-            f"{_topic_name(current)}. Do you want to switch to {_topic_name(topic)}?' Then wait, and call "
-            "confirm_switch with their answer."
-        ),
-    }
-
-
-def confirm_switch(args: dict, state: dict) -> dict:
-    pending = state.get("pending_switch")
-    if not pending:
-        return {"status": "nothing_pending", "instruction": "No switch was pending. Continue the conversation."}
-    state["pending_switch"] = None
-    if args.get("accepted"):
-        state["topic"] = pending
+    if state.get("topic") not in (None, topic):
         for field in ANIMAL_FIELDS:   # age/weight belonged to the previous animal
             state[field] = None
-        return {"status": "switched", "topic": _topic_name(pending),
-                "instruction": f"Now answer the farmer's earlier question about {_topic_name(pending)} (call the right tool)."}
-    return {"status": "kept", "topic": _topic_name(state.get("topic")),
-            "instruction": f"Stay on {_topic_name(state.get('topic'))}. Ask what they would like to know about it."}
+    state["topic"] = topic
+    return {"status": "ok", "topic": _topic_name(topic),
+            "instruction": "Now call the tool that answers the question (get_topic_info or get_crop_timing)."}
 
 
 # ── Crop / animal info ───────────────────────────────────────────────────────
 
-def _missing_fields(topic: dict, aspect: str, state: dict) -> list:
-    if topic["group"] == "livestock":
-        needed = LIVESTOCK_PROBES.get(aspect, [])
-    else:
-        needed = list(CROP_PROBES.get(aspect, []))
-        if topic["key"] in FARM_TYPE_EXEMPT and "farm_type" in needed:
-            needed.remove("farm_type")
-    return [f for f in needed if not state.get(f)]
-
-
-def _probe(fields: list, state: dict, probe_key: str, retry_tool: str) -> dict:
-    state.setdefault("probed", []).append(probe_key)
-    questions = " ".join(PROBE_QUESTIONS[f] for f in fields)
-    return {
-        "status": "missing_info",
-        "fields": fields,
-        "instruction": (
-            f"Before answering, ask the farmer this, in one short turn: \"{questions}\" "
-            f"When they answer, call update_profile with what they said, then call {retry_tool} again."
-        ),
-    }
-
-
 def get_topic_info(args: dict, state: dict) -> dict:
     key = state.get("topic")
     if not key:
-        return {"status": "missing_info", "fields": ["topic"],
-                "instruction": "Ask the farmer which crop or animal they are asking about, then call select_topic."}
+        return dict(NO_TOPIC)
     topic = data.topics()[key]
     aspect = args.get("aspect") or "overview"
     valid = LIVESTOCK_ASPECTS if topic["group"] == "livestock" else CROP_ASPECTS
     if aspect not in valid:
         aspect = "other"
-
-    missing = _missing_fields(topic, aspect, state)
-    probe_key = f"{key}:{aspect}"
-    if missing and probe_key not in state.get("probed", []):
-        return _probe(missing, state, probe_key, "get_topic_info")
 
     card = data.card(key)
     sections = (card or {}).get("aspects", {})
@@ -169,7 +112,7 @@ def get_topic_info(args: dict, state: dict) -> dict:
                 "instruction": f"Say you don't have details on this for {topic['name']} yet. Don't guess."}
     context = {f: state.get(f) for f in ("province", "farm_type", "soil_fertility", "harvest_resource",
                                          "animal_age", "animal_weight_kg") if state.get(f)}
-    rule = ANSWER_RULE
+    rule = ANSWER_RULE + NO_PROBE_RULE
     if context:
         rule += " Fit the answer to the farmer's details in `farmer` (e.g. their province or land type) when `info` makes that distinction."
     return {"status": "ok", "topic": topic["name"], "aspect": aspect, "farmer": context, "info": info, "instruction": rule}
@@ -198,8 +141,8 @@ def update_profile(args: dict, state: dict) -> dict:
             saved["district"] = f"{match['district']} ({match['province']})"
         else:
             problems.append(
-                f"District '{args['district']}' was not found. Ask the farmer to say their district name again, "
-                "or the nearest big city."
+                f"District '{args['district']}' was not found, so it wasn't saved. Don't ask again: carry on "
+                "with the farmer's question."
             )
     for field in ("farm_type", "soil_fertility", "harvest_resource", "animal_age"):
         if args.get(field):
@@ -215,7 +158,8 @@ def update_profile(args: dict, state: dict) -> dict:
             state["animal_weight_kg"] = weight
             saved["animal_weight_kg"] = weight
         else:
-            problems.append("That animal weight doesn't look right. Ask again in kilograms.")
+            problems.append("That animal weight doesn't look right, so it wasn't saved. Don't ask again: "
+                            "carry on with the farmer's question.")
     result = {"status": "ok" if not problems else "problem", "saved": saved}
     if problems:
         result["instruction"] = " ".join(problems)
@@ -230,40 +174,53 @@ def _spoken_rate(rate: dict) -> dict:
     return {"name": rate["name"], "unit": rate["unit"], "min": rate["min"], "max": rate["max"], "average": rate["avg"]}
 
 
+def _pakistan_rates(book: dict, keys: list) -> list:
+    """One rate per commodity across every mandi that trades it: the lowest minimum, the highest
+    maximum and the mean of the averages."""
+    rates = []
+    for k in keys:
+        found = [m["rates"][k] for m in book["mandis"].values() if k in m["rates"]]
+        if found:
+            rates.append({"name": found[0]["name"], "unit": found[0]["unit"],
+                          "min": min(r["min"] for r in found), "max": max(r["max"] for r in found),
+                          "average": round(sum(r["avg"] for r in found) / len(found) / 10) * 10,
+                          "mandis": len(found)})
+    return rates
+
+
+SAY_RATE = ("the average and the range (minimum to maximum), with the unit (per 40 kg is one maund). Say numbers "
+            "the way people say them, e.g. 'three thousand six hundred rupees'. Keep it short.")
+
+
 def get_mandi_rate(args: dict, state: dict) -> dict:
     book = data.mandi()
+    available = ", ".join(c["name"] for c in book["commodities"].values())
     commodity = args.get("commodity") or "unknown"
     if commodity == "unknown":
-        return {"status": "missing_info", "fields": ["commodity"],
-                "instruction": "Ask: 'Which crop or animal's mandi rate would you like to know?' Then call get_mandi_rate again."}
+        return {"status": "no_commodity",
+                "instruction": (f"Don't ask a question back. Say in one short sentence that you have today's mandi "
+                                f"rates for: {available}, and they can say which one they want.")}
     if commodity == "other" or (commodity not in book["commodities"] and commodity != "rice"):
-        available = ", ".join(c["name"] for c in book["commodities"].values())
         name = args.get("other_name") or "that"
         return {"status": "unsupported",
                 "instruction": f"Say you don't have the mandi rate for {name}. Rates available: {available}."}
 
-    asked_place = args.get("district")
-    if asked_place:
-        place = data.find_district(asked_place)
-        if not place:
-            return {"status": "unknown_district",
-                    "instruction": f"Say you couldn't find a mandi for '{asked_place}' and ask for the district name again."}
-    elif state.get("district"):
-        place = data.find_district(state["district"])
-    else:
-        return {"status": "missing_info", "fields": ["district"],
-                "instruction": ("Ask: 'Which district are you in?' When they answer, call update_profile with that "
-                                "district (it's their own), then call get_mandi_rate again.")}
-
     keys = ["rice_basmati", "rice_irri"] if commodity == "rice" else [commodity]
+    result = {"date": today().strftime("%d %B %Y"), "currency": "rupees"}
+    asked_place = args.get("district")
+    place = data.find_district(asked_place or state.get("district"))
+    if not place:
+        # No district (or one we can't find): give the Pakistan-wide rate instead of asking.
+        not_found = f"Say you couldn't find a mandi for '{asked_place}', then give " if asked_place else "Give "
+        return {**result, "status": "ok_pakistan", "rates": _pakistan_rates(book, keys),
+                "instruction": (f"{not_found}today's rate across Pakistan's mandis: {SAY_RATE} Don't ask for "
+                                "their district.")}
+
     market = book["mandis"][place["district"]]
     rates = [_spoken_rate(market["rates"][k]) for k in keys if k in market["rates"]]
-    result = {"date": today().strftime("%d %B %Y"), "currency": "rupees"}
     if rates:
         return {**result, "status": "ok", "mandi": market["mandi"], "rates": rates,
-                "instruction": ("Tell the farmer today's rate in this mandi: the average and the range (minimum to "
-                                "maximum), with the unit (per 40 kg is one maund). Say numbers the way people say "
-                                "them, e.g. 'three thousand six hundred rupees'. Keep it short.")}
+                "instruction": f"Tell the farmer today's rate in this mandi: {SAY_RATE}"}
     # Not traded there: point to the first mandi that has it, same province first.
     others = [d for d, m in book["mandis"].items() if any(k in m["rates"] for k in keys)]
     same_province = [d for d in others if book["mandis"][d]["province"] == place["province"]]
@@ -307,8 +264,7 @@ def what_can_i_sow(args: dict, state: dict) -> dict:
 def get_crop_timing(args: dict, state: dict) -> dict:
     key = state.get("topic")
     if not key:
-        return {"status": "missing_info", "fields": ["topic"],
-                "instruction": "Ask which crop they mean, then call select_topic and get_crop_timing again."}
+        return dict(NO_TOPIC)
     topic = data.topics()[key]
     if topic["group"] == "livestock":
         return {"status": "not_applicable", "instruction": "Sowing and harvest times are for crops, not animals. Say so briefly."}
@@ -352,7 +308,6 @@ def get_crop_timing(args: dict, state: dict) -> dict:
 
 HANDLERS = {
     "select_topic": select_topic,
-    "confirm_switch": confirm_switch,
     "get_topic_info": get_topic_info,
     "get_general_info": get_general_info,
     "update_profile": update_profile,

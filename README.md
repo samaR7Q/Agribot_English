@@ -2,7 +2,8 @@
 
 This is a voice-only English farming advisor.
 - The browser talks to **Gemini Live** directly, using a one-call token from our server.
-- Every farming rule runs in our own Python tools: topic switch, missing-info questions, unsupported crops, mandi lookups and sowing windows.
+- Every farming rule runs in our own Python tools: current topic, unsupported crops, mandi lookups and sowing windows.
+- **No probing:** a new crop or animal is answered straight away (no "switch?" question), and missing details (district, land, soil, animal age or weight) are never asked for. A rate with no district gives the Pakistan-wide rate.
 - It is hosted on this machine, behind a cloudflared HTTPS link (the mic needs HTTPS).
 
 ```

@@ -41,15 +41,6 @@ def declarations() -> list:
             },
         },
         {
-            "name": "confirm_switch",
-            "description": "Call with the farmer's answer after you asked whether they want to switch to the new crop/animal.",
-            "parameters": {
-                "type": "OBJECT",
-                "properties": {"accepted": {"type": "BOOLEAN", "description": "true if the farmer said yes."}},
-                "required": ["accepted"],
-            },
-        },
-        {
             "name": "get_topic_info",
             "description": (
                 "Get the facts to answer a question about the current crop or animal. Call select_topic first. "
@@ -88,8 +79,8 @@ def declarations() -> list:
             "name": "get_mandi_rate",
             "description": (
                 "Mandi (market) rate of a crop or animal. Does not change the conversation topic. If the farmer "
-                "named a city for the rate, pass it as district; otherwise leave district empty and the saved "
-                "district is used. Use commodity='other' for anything not in the list."
+                "named a city for the rate, pass it as district; otherwise leave district empty (the saved "
+                "district is used, or the Pakistan-wide rate). Use commodity='other' for anything not in the list."
             ),
             "parameters": {
                 "type": "OBJECT",

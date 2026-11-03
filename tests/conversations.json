@@ -11,35 +11,35 @@
   "How do I grow tomatoes?"
  ],
  "no_crop_named": [
-  "Which fertilizer should I use?",
-  "Wheat"
+  "Which fertilizer should I use?"
  ],
- "wheat_variety_probe": [
-  "Which wheat variety should I sow?",
-  "I am from Bahawalpur and my land is irrigated"
+ "wheat_variety_no_probe": [
+  "Which wheat variety should I sow?"
  ],
- "fertilizer_probe": [
-  "How much urea for wheat?",
-  "My soil is medium"
+ "wheat_variety_details_given": [
+  "I am from Bahawalpur and my land is irrigated. Which wheat variety should I sow?"
  ],
- "topic_switch_yes": [
+ "fertilizer_no_probe": [
+  "How much urea for wheat?"
+ ],
+ "topic_switch_direct": [
   "What are the main diseases of wheat?",
-  "How much water does maize need?",
-  "Yes"
+  "How much water does maize need?"
  ],
- "topic_switch_no": [
+ "topic_switch_to_animal": [
   "How do I control weeds in cotton?",
-  "Tell me about buffalo breeds",
-  "No"
+  "Tell me about buffalo breeds"
  ],
  "negation": [
   "Tell me about wheat irrigation",
-  "Not wheat, I mean rice. When do I harvest it?",
-  "Yes"
+  "Not wheat, I mean rice. When do I harvest it?"
  ],
- "mandi_no_district": [
-  "What is the wheat rate today?",
-  "Multan"
+ "mandi_no_district_pakistan_rate": [
+  "What is the wheat rate today?"
+ ],
+ "mandi_saved_district": [
+  "I am from Multan.",
+  "What is the wheat rate today?"
  ],
  "mandi_other_city_keeps_topic": [
   "Tell me about sugarcane sowing",
@@ -59,9 +59,8 @@
  "harvest_time_no_calendar": [
   "When is mustard harvested?"
  ],
- "livestock_health_probe": [
-  "My cow has a fever, what should I do?",
-  "She is 4 years old and about 400 kg"
+ "livestock_health_no_probe": [
+  "My cow has a fever, what should I do?"
  ],
  "age_not_duration": [
   "My buffalo has been pregnant for 8 months, how should I feed her?"
@@ -82,8 +81,7 @@
   "How much green fodder does a buffalo need daily?"
  ],
  "radish_varieties": [
-  "Which radish variety should I sow in October?",
-  "Lahore, irrigated"
+  "Which radish variety should I sow in October?"
  ],
  "oats_weed_grass_killer": [
   "Can I spray quizalofop on my oats for grass weeds?"

@@ -24,20 +24,19 @@ def test_first_topic_is_set_without_confirmation():
     assert result["status"] == "ok" and state["topic"] == "wheat"
 
 
-def test_topic_switch_asks_then_switches_on_yes():
+def test_topic_switch_is_direct():
     _, state = run_tool("select_topic", {"topic": "wheat", "name_said": "wheat"}, None)
     result, state = run_tool("select_topic", {"topic": "maize", "name_said": "maize"}, state)
-    assert result["status"] == "confirm_switch" and state["topic"] == "wheat"
-    assert "Wheat" in result["instruction"] and "Maize" in result["instruction"]
-    result, state = run_tool("confirm_switch", {"accepted": True}, state)
-    assert result["status"] == "switched" and state["topic"] == "maize"
+    assert result["status"] == "ok" and state["topic"] == "maize"
 
 
-def test_topic_switch_no_keeps_old_topic():
-    _, state = run_tool("select_topic", {"topic": "wheat", "name_said": "wheat"}, None)
+def test_animal_details_reset_on_new_animal():
+    _, state = run_tool("select_topic", {"topic": "buffalo", "name_said": "buffalo"}, None)
+    _, state = run_tool("update_profile", {"animal_age": "5 years", "animal_weight_kg": 500}, state)
+    _, state = run_tool("select_topic", {"topic": "buffalo", "name_said": "bhains"}, state)
+    assert state["animal_age"] == "5 years"
     _, state = run_tool("select_topic", {"topic": "cow", "name_said": "cow"}, state)
-    result, state = run_tool("confirm_switch", {"accepted": False}, state)
-    assert result["status"] == "kept" and state["topic"] == "wheat" and state["pending_switch"] is None
+    assert state["topic"] == "cow" and state["animal_age"] is None and state["animal_weight_kg"] is None
 
 
 def test_unsupported_crop_lists_covered_topics():
@@ -46,30 +45,18 @@ def test_unsupported_crop_lists_covered_topics():
     assert "Wheat" in result["instruction"] and state["topic"] is None
 
 
-def test_info_without_topic_asks_for_crop():
+def test_info_without_topic_does_not_ask_back():
     result, _ = run_tool("get_topic_info", {"aspect": "fertilizer", "question": "which fertilizer"}, None)
-    assert result["status"] == "missing_info" and result["fields"] == ["topic"]
+    assert result["status"] == "no_topic" and "Don't ask" in result["instruction"]
 
 
-def test_varieties_probe_district_and_land_once():
-    _, state = run_tool("select_topic", {"topic": "wheat", "name_said": "wheat"}, None)
-    result, state = run_tool("get_topic_info", {"aspect": "varieties", "question": "best variety"}, state)
-    assert result["status"] == "missing_info" and result["fields"] == ["district", "farm_type"]
-    # Farmer ignored the question: the second call must not probe again.
-    result, state = run_tool("get_topic_info", {"aspect": "varieties", "question": "best variety"}, state)
-    assert result["status"] in ("ok", "no_info")
-
-
-def test_rice_varieties_skip_land_type():
-    _, state = run_tool("select_topic", {"topic": "rice", "name_said": "rice"}, None)
-    result, _ = run_tool("get_topic_info", {"aspect": "varieties", "question": "variety"}, state)
-    assert result["fields"] == ["district"]
-
-
-def test_livestock_health_probes_age_and_weight():
-    _, state = run_tool("select_topic", {"topic": "buffalo", "name_said": "bhains"}, None)
-    result, _ = run_tool("get_topic_info", {"aspect": "health", "question": "fever"}, state)
-    assert result["fields"] == ["animal_age", "animal_weight_kg"]
+@pytest.mark.parametrize("topic,aspect", [("wheat", "varieties"), ("rice", "varieties"), ("wheat", "fertilizer"),
+                                          ("wheat", "harvesting"), ("buffalo", "health")])
+def test_answers_without_probing(topic, aspect):
+    _, state = run_tool("select_topic", {"topic": topic, "name_said": topic}, None)
+    result, _ = run_tool("get_topic_info", {"aspect": aspect, "question": aspect}, state)
+    assert result["status"] == "ok" and result["info"]
+    assert "Never ask the farmer" in result["instruction"]
 
 
 def test_update_profile_district_alias_and_typo():
@@ -86,10 +73,12 @@ def test_animal_weight_out_of_range_rejected():
     assert result["status"] == "problem" and state["animal_weight_kg"] is None
 
 
-def test_mandi_needs_district_and_never_changes_topic():
+def test_mandi_without_district_gives_pakistan_rate_and_never_changes_topic():
     _, state = run_tool("select_topic", {"topic": "wheat", "name_said": "wheat"}, None)
     result, state = run_tool("get_mandi_rate", {"commodity": "maize"}, state)
-    assert result["status"] == "missing_info" and result["fields"] == ["district"]
+    assert result["status"] == "ok_pakistan" and result["rates"][0]["name"] == "Maize"
+    r = result["rates"][0]
+    assert r["min"] <= r["average"] <= r["max"] and r["mandis"] > 1
     result, state = run_tool("get_mandi_rate", {"commodity": "maize", "district": "multan"}, state)
     assert result["status"] == "ok" and result["rates"][0]["name"] == "Maize"
     assert state["topic"] == "wheat" and state["district"] is None   # asked city is not saved
@@ -99,7 +88,9 @@ def test_mandi_rice_gives_both_types_and_unknown_commodity():
     result, _ = run_tool("get_mandi_rate", {"commodity": "rice", "district": "Lahore"}, None)
     assert [r["name"] for r in result["rates"]] == ["Basmati paddy", "IRRI-6 paddy"]
     result, _ = run_tool("get_mandi_rate", {"commodity": "unknown"}, None)
-    assert result["fields"] == ["commodity"]
+    assert result["status"] == "no_commodity" and "Wheat" in result["instruction"]
+    result, _ = run_tool("get_mandi_rate", {"commodity": "wheat", "district": "Atlantis"}, None)
+    assert result["status"] == "ok_pakistan" and "Atlantis" in result["instruction"]
     result, _ = run_tool("get_mandi_rate", {"commodity": "other", "other_name": "onion"}, None)
     assert result["status"] == "unsupported" and "onion" in result["instruction"]
 
